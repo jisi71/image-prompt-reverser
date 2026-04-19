@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy · Image Prompt Reverser</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                 "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(60% 50% at 10% 10%, #cfe8ff 0%, transparent 60%),
+      radial-gradient(55% 50% at 90% 5%, #ffd8ec 0%, transparent 60%),
+      linear-gradient(180deg, #f8fcff 0%, #fbf9ff 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #1c1c1e;
+    padding: 40px 20px;
+    line-height: 1.75;
+  }
+  .wrap { max-width: 800px; margin: 0 auto; }
+  .card {
+    background: rgba(255,255,255,0.75);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.55);
+    border-radius: 20px;
+    padding: 40px 48px;
+    box-shadow: 0 12px 36px rgba(22,28,50,0.14);
+  }
+  h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: -0.02em; }
+  h2 { margin: 28px 0 8px; font-size: 18px; color: #1c1c1e; }
+  .meta { color: #6b7280; margin-bottom: 20px; font-size: 13px; }
+  p, li { font-size: 14.5px; color: #374151; }
+  ul { padding-left: 22px; }
+  code {
+    background: rgba(15,23,42,0.06);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
+  .lang-switch {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(15,23,42,0.08);
+    border-radius: 8px;
+    color: #0a84ff;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .tip {
+    background: rgba(10,132,255,0.08);
+    border-left: 3px solid #0a84ff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #1c1c1e;
+  }
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+  <a class="lang-switch" href="./privacy.zh.html">中文 →</a>
+
+  <h1>Privacy Policy</h1>
+  <div class="meta">
+    Image Prompt Reverser · Chrome Extension<br/>
+    Last updated: April 19, 2026 · Version 1.0
+  </div>
+
+  <div class="tip">
+    <b>TL;DR</b>: This extension <b>does not collect, upload, or store</b> any of your data on any developer server.
+    All settings are stored only in your local browser, and images are sent only to the API endpoint you configure yourself.
+  </div>
+
+  <h2>1. No developer-operated servers</h2>
+  <p>"Image Prompt Reverser" is an open-source Chrome extension that runs entirely in your local browser. The developer <b>operates no backend service</b> and therefore cannot receive, view, or store any of your data.</p>
+
+  <h2>2. What the extension stores</h2>
+  <p>The extension stores the following information <b>only in your local browser</b>, using Chrome's official <code>chrome.storage.sync</code> and <code>chrome.storage.local</code> APIs:</p>
+  <ul>
+    <li><b>API Base URL</b> — the model endpoint you configure</li>
+    <li><b>API Key</b> — your credential</li>
+    <li><b>Model name</b> — the vision model ID you configure</li>
+    <li><b>Default prompt-style preset</b> (General / Nano Banana / Jimeng / Flux / SD)</li>
+    <li><b>A cache of models that don't support <code>response_format</code></b> (just model name strings, used to avoid redundant retries)</li>
+  </ul>
+  <p>None of this data is transmitted to the developer or any third party. You can clear it at any time via the 🗑 Reset button on the extension's options page.</p>
+
+  <h2>3. How images and prompts flow</h2>
+  <p>When you trigger a reverse-prompt action (right-clicking an image or taking a screenshot), data flows as follows:</p>
+  <ul>
+    <li>The image (as an URL or base64 screenshot) is sent <b>directly to the API endpoint you configured</b> (e.g. <code>https://api.openai.com/v1</code> or any gateway of your choice)</li>
+    <li>The JSON result returned by the model is displayed in a floating panel, and <b>is not saved</b> by the extension</li>
+    <li>Once the panel is closed, the result is discarded</li>
+    <li>The developer <b>has no access</b> to any images or results you process</li>
+  </ul>
+
+  <h2>4. Permissions requested and why</h2>
+  <ul>
+    <li><code>contextMenus</code> — to add "Reverse Prompt" entries to the right-click menu</li>
+    <li><code>storage</code> — to locally save your configuration (see Section 2)</li>
+    <li><code>activeTab</code> — to capture a screenshot of the current tab <b>only when you click the extension icon</b></li>
+    <li><code>host_permissions: &lt;all_urls&gt;</code> — to let you right-click images on any site and to render the result panel overlay. The extension <b>does not read or upload</b> page content.</li>
+  </ul>
+
+  <h2>5. What the extension does NOT do</h2>
+  <p>This extension does <b>not</b>:</p>
+  <ul>
+    <li>Collect or upload your browsing history</li>
+    <li>Read or transmit cookies</li>
+    <li>Integrate any third-party analytics or tracking (no Google Analytics, Sentry, etc.)</li>
+    <li>Access saved passwords, autofill data, or payment information</li>
+    <li>Make any API calls in the background — requests fire only when you actively trigger them</li>
+  </ul>
+
+  <h2>6. Third-party services</h2>
+  <p>The extension only sends requests to the API endpoint you configure (OpenAI, Google Gemini, Anthropic Claude, any OpenAI-compatible gateway, etc.). Please review the <b>privacy policy of the API provider you choose</b> — how they handle image data is entirely up to them and unrelated to this extension.</p>
+
+  <h2>7. Children's privacy</h2>
+  <p>This extension is not directed to children under 13 and does not knowingly collect any data from them.</p>
+
+  <h2>8. Data retention and deletion</h2>
+  <p>Because all data is stored only in your local browser, you have full control. You can clear it by:</p>
+  <ul>
+    <li>Clicking the <b>🗑 Reset</b> button in the options page</li>
+    <li>Removing the extension from <code>chrome://extensions/</code></li>
+    <li>Clearing your browser data</li>
+  </ul>
+
+  <h2>9. Changes to this policy</h2>
+  <p>Any updates will be noted in the <a href="https://github.com/jisi71/image-prompt-reverser">GitHub repository</a> with a revised "Last updated" date. Material changes will also be mentioned in the extension's release notes.</p>
+
+  <h2>10. Contact</h2>
+  <p>
+    For questions or feedback, please reach out via:<br/>
+    <b>GitHub Issues</b>: <a href="https://github.com/jisi71/image-prompt-reverser/issues">jisi71/image-prompt-reverser/issues</a>
+  </p>
+</div></div>
+</body>
+</html>

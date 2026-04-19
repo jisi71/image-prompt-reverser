@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Image Prompt Reverser · 图片提示词反推</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                 "PingFang SC", "Microsoft YaHei", sans-serif;
+    background:
+      radial-gradient(60% 50% at 10% 10%, #cfe8ff 0%, transparent 60%),
+      radial-gradient(55% 50% at 90% 5%, #ffd8ec 0%, transparent 60%),
+      radial-gradient(55% 55% at 80% 100%, #dcd4ff 0%, transparent 60%),
+      linear-gradient(180deg, #f8fcff 0%, #fbf9ff 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #1c1c1e;
+    padding: 40px 20px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .card {
+    background: rgba(255,255,255,0.7);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.55);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 12px 36px rgba(22,28,50,0.14);
+  }
+  h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: -0.02em; }
+  .sub { color: #6b7280; margin-bottom: 28px; }
+  .links { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+  a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(180deg, #3da0ff 0%, #0a84ff 100%);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 6px 18px rgba(10,132,255,0.35);
+  }
+  a.btn.secondary {
+    background: rgba(255,255,255,0.8);
+    color: #1c1c1e;
+    border: 1px solid rgba(15,23,42,0.08);
+    box-shadow: 0 1px 2px rgba(22,28,50,0.04);
+  }
+  a.btn:hover { filter: brightness(1.05); }
+  .foot { margin-top: 24px; color: #9aa3b2; font-size: 13px; }
+  .foot a { color: #0a84ff; text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>🎨 图片提示词反推</h1>
+      <div class="sub">Image Prompt Reverser · Chrome Extension</div>
+
+      <h3>📖 文档</h3>
+      <div class="links">
+        <a class="btn" href="./privacy.zh.html">隐私政策(中文)</a>
+        <a class="btn secondary" href="./privacy.en.html">Privacy Policy (English)</a>
+      </div>
+
+      <h3>🔗 链接</h3>
+      <div class="links">
+        <a class="btn secondary" href="https://github.com/jisi71/image-prompt-reverser">GitHub 源码</a>
+        <a class="btn secondary" href="https://github.com/jisi71/image-prompt-reverser/issues">问题反馈</a>
+      </div>
+
+      <div class="foot">
+        MIT License · © 2026 jisi71 ·
+        <a href="https://github.com/jisi71/image-prompt-reverser">jisi71/image-prompt-reverser</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
