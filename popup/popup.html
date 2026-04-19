@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>图片提示词反推</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">🎨 图片提示词反推</div>
+
+    <button id="btn-capture" class="primary">📷 截图反推</button>
+
+    <div class="section">
+      <div class="label">当前反推风格</div>
+      <select id="preset-select"></select>
+    </div>
+
+    <div class="tips">
+      <div>💡 在网页上 <b>右键图片</b> → "提示词反推"</div>
+      <div>💡 点击上方按钮可 <b>框选截图</b> 反推</div>
+    </div>
+
+    <div class="footer">
+      <a href="#" id="open-options">打开设置</a>
+      <span id="status"></span>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>图片提示词反推 · 设置</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 图片提示词反推 · 设置</h1>
+
+    <section class="card">
+      <h2>API 配置(OpenAI 兼容格式)</h2>
+      <div class="row">
+        <label>Base URL</label>
+        <input id="baseUrl" type="text" placeholder="https://api.openai.com/v1" />
+        <small>示例:<code>https://api.openai.com/v1</code> 或中转站地址(不含 <code>/chat/completions</code>)</small>
+      </div>
+      <div class="row">
+        <label>API Key</label>
+        <div class="input-group">
+          <input id="apiKey" type="password" placeholder="sk-..." />
+          <button id="toggle-key" type="button" class="secondary small" title="显示/隐藏">👁</button>
+        </div>
+      </div>
+      <div class="row">
+        <label>视觉模型名称</label>
+        <input id="model" type="text" placeholder="gpt-4o / claude-3-5-sonnet / gemini-2.5-flash / qwen-vl-max ..." />
+        <small>填写支持视觉(multimodal)的模型 ID</small>
+      </div>
+      <div class="row actions">
+        <button id="btn-test" class="secondary">🧪 测试连接</button>
+        <button id="btn-save" class="primary">💾 保存</button>
+        <button id="btn-reset" class="secondary">🗑 重置</button>
+        <span id="msg"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>默认反推风格</h2>
+      <div class="presets" id="presets"></div>
+    </section>
+
+    <section class="card">
+      <h2>使用说明</h2>
+      <ol class="usage">
+        <li>填写 API 配置并保存。</li>
+        <li>在任意网页 <b>右键图片</b> → 选择"🎨 提示词反推(当前图片)"。</li>
+        <li>或点击浏览器工具栏插件图标 → "📷 截图反推" → 在页面上 <b>框选区域</b>。</li>
+        <li>结果浮窗:<kbd>⌘/Ctrl + C</kbd> 复制 JSON,<kbd>Esc</kbd> 关闭,可拖拽移动。</li>
+        <li>右键点击插件图标可快速切换反推风格。</li>
+      </ol>
+    </section>
+  </div>
+  <script src="options.js" type="module"></script>
+</body>
+</html>

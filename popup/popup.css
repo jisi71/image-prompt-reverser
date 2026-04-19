@@ -1,0 +1,209 @@
+/* ============ Apple Glass · Popup(深色磨砂玻璃,与浮窗一致) ============ */
+:root {
+  --accent: #0a84ff;
+  --accent-grad: linear-gradient(180deg, #3da0ff 0%, #0a84ff 100%);
+  --text: #f2f2f5;
+  --text-muted: #a6a8b0;
+  --text-faint: #8a8d96;
+  --stroke: rgba(255, 255, 255, 0.1);
+  --stroke-strong: rgba(255, 255, 255, 0.18);
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-bg-strong: rgba(255, 255, 255, 0.1);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+/* 关键:让 html 透明,这样 body 的圆角外区域不会露出 Chrome 默认的灰白背景 */
+html { background: transparent; }
+
+body {
+  width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+               "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  /* 深色基底(类浮窗) + 内部色斑,通过 backdrop-filter 模糊 */
+  background: #1c1c20;
+  position: relative;
+  overflow: hidden;
+  /* 圆角 + 1px 高光描边 */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset;
+}
+
+/* 深色底 + 饱和度动态色斑(后面卡片的 backdrop-filter 会模糊它们) */
+body::before,
+body::after {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+body::before {
+  top: -120px; left: -80px;
+  background: radial-gradient(circle, #4b9dff 0%, transparent 70%);
+}
+body::after {
+  bottom: -140px; right: -80px;
+  background: radial-gradient(circle, #ff6fb0 0%, transparent 70%);
+}
+
+/* 再加一层顶部高光边缘(类似 macOS 窗口顶部玻璃反光) */
+body > .wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 30%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.12) 70%,
+    transparent 100%);
+  z-index: 2;
+}
+
+.wrap {
+  position: relative;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+/* 主操作按钮:苹果蓝液态玻璃 */
+button.primary {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(10, 132, 255, 0.5);
+  border-radius: 14px;
+  background: var(--accent-grad);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow:
+    0 8px 22px rgba(10, 132, 255, 0.42),
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.15) inset;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.15s ease;
+  font-family: inherit;
+}
+button.primary:hover { filter: brightness(1.08); }
+button.primary:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow:
+    0 4px 12px rgba(10, 132, 255, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.22) inset;
+}
+
+/* 玻璃卡片通用样式 */
+.section,
+.tips {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--stroke-strong);
+  border-radius: 14px;
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.25),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px;
+}
+
+.label {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* 下拉选择:深色玻璃 */
+select {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: var(--text);
+  border: 1px solid var(--stroke-strong);
+  border-radius: 10px;
+  font-size: 13px;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  /* 浅色箭头 */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M3 4.5l3 3 3-3' stroke='%23a6a8b0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+select:hover { background-color: rgba(255, 255, 255, 0.12); }
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.25);
+}
+select option {
+  background: #1c1c20;
+  color: var(--text);
+}
+
+/* 提示条 */
+.tips {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  padding: 11px 12px;
+}
+.tips b { color: var(--text); font-weight: 600; }
+.tips > div {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+
+/* 页脚 */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 0 2px;
+}
+.footer a {
+  color: #7ebaff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.footer a:hover {
+  color: #a7d1ff;
+  text-decoration: underline;
+}
+#status { color: #32d74b; font-weight: 500; }
