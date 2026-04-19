@@ -37,6 +37,30 @@
     </section>
 
     <section class="card">
+      <h2>权限授权</h2>
+      <div class="perm-row">
+        <div>
+          <div class="perm-title">API 域名访问权限</div>
+          <div class="perm-desc">访问你填写的 API 服务器。保存配置时会自动请求授权,未授权则无法调用 API。</div>
+          <div id="perm-api-status" class="perm-status"></div>
+        </div>
+        <button id="btn-grant-api" class="primary">🔓 授权 API 域名</button>
+      </div>
+      <div class="perm-divider"></div>
+      <div class="perm-row">
+        <div>
+          <div class="perm-title">所有网站访问(可选)</div>
+          <div class="perm-desc">用于从私有/需鉴权的站点直接下载图片并转 base64。<b>不勾选也能用</b>,大部分公开图片由 AI 服务商侧直接拉取即可。</div>
+          <div id="perm-all-status" class="perm-status"></div>
+        </div>
+        <div class="perm-actions">
+          <button id="btn-grant-all" class="secondary">开启</button>
+          <button id="btn-revoke-all" class="secondary" style="display:none">关闭</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
       <h2>默认反推风格</h2>
       <div class="presets" id="presets"></div>
     </section>

@@ -135,6 +135,16 @@ async function getActiveTab() {
   return tab;
 }
 
+// 检查是否有该 URL 对应 origin 的 host 权限
+async function hasOriginPermission(url) {
+  try {
+    const origin = new URL(url).origin + '/*';
+    return await chrome.permissions.contains({ origins: [origin] });
+  } catch (_) {
+    return false;
+  }
+}
+
 async function runReverseOnImageUrl(tabId, imageUrl) {
   const taskId = 'ctx-' + Date.now();
   try {
@@ -182,6 +192,20 @@ async function runReverseOnDataUrl(imageDataOrUrl, taskId) {
   const cfg = await chrome.storage.sync.get(['baseUrl', 'apiKey', 'model', 'preset']);
   const presetId = cfg.preset || 'general';
   const preset = getPreset(presetId);
+
+  // 权限检查:必须有 API 域名的 host 权限
+  if (cfg.baseUrl) {
+    const hasPerm = await hasOriginPermission(cfg.baseUrl);
+    if (!hasPerm) {
+      let origin = '';
+      try { origin = new URL(cfg.baseUrl).origin; } catch (_) {}
+      throw new Error(
+        `缺少 API 域名访问权限${origin ? ':' + origin : ''}\n\n`
+        + '请打开扩展"设置"页,点击"🔓 授权 API 域名"按钮,授权一次即可。\n'
+        + '首次保存 API 配置时也会自动弹出授权窗口。'
+      );
+    }
+  }
 
   const t0 = performance.now();
 

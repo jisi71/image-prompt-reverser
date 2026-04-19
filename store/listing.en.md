@@ -161,12 +161,11 @@ Uses chrome.storage.sync to locally save the user's API Base URL, API Key, model
 When the user explicitly clicks the extension icon to start the "Screenshot Reverse" feature, the extension performs a single chrome.tabs.captureVisibleTab on the current tab. The screenshot is sent only to the user-configured vision API endpoint; it is never stored or sent to any developer server.
 ```
 
-### `host_permissions: <all_urls>`
+### `optional_host_permissions: <all_urls>`
 ```
-Users may want to reverse-prompt images on any website, so the extension needs to:
-1) Inject a content script to detect the image element under the cursor on right-click (supports sites like Pinterest and Xiaohongshu that use transparent overlay divs);
-2) Render the result panel and screenshot selection UI on the page;
-3) Send the image URL or screenshot base64 to the API endpoint the user configured in the options page.
+The extension declares NO default host_permissions. It only lists <all_urls> as an OPTIONAL permission:
+1) When the user saves API config in the options page, the extension requests permission only for that specific API origin (e.g. https://api.openai.com/*) via a user gesture. The user explicitly approves or denies.
+2) Only if the user clicks the "Enable all-site access" button in options, the extension requests <all_urls> — used to download images from authenticated/hotlink-protected sites for base64 conversion (optional feature).
 The extension does not read page content, forms, cookies, or any other sensitive information, and only acts when the user actively invokes it.
 ```
 

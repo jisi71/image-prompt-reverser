@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
   "name": "图片提示词反推",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "选择图片一键反推生成 JSON 格式提示词,支持右键反推与网页截图反推,适配 Nano Banana / 即梦 / Flux / SD 等主流 AI 绘画模型。",
   "permissions": [
     "contextMenus",
     "storage",
     "activeTab"
   ],
-  "host_permissions": [
+  "optional_host_permissions": [
     "<all_urls>"
   ],
   "background": {
